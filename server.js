@@ -1,24 +1,22 @@
-import http from 'node:http'
-import { serveStatic } from './utils/serveStatic.js';
-const PORT = 8000
+import http from "node:http";
+import { serveStatic } from "./utils/serveStatic.js";
+import { handleGet } from "./handlers/routeHandlers.js";
 
+const PORT = 8000;
 
-/*
-Challenge 1:
+const __dirname = import.meta.dirname;
 
-1. Get the name of the directory holding this server.js file and store it to a const ‘__dirname’.
-*/
-const __dirname = import.meta.dirname;   //this gives us the directory which holds our server.js file
+const server = http.createServer(async (req, res) => {
+  /*
+Challenge: 
+   1. Set up a route for ‘/api’.
+   2. Nest an if to check if the method is ‘GET’. 
+   3. When a GET request is received to '/api', use handleGet() to handle it.
+*/ if (req.url.startsWith("/api") && req.method === "GET") {
+    return await handleGet(res); //as the handleGet function is asyn we are using await here
+  } else if (!req.url.startsWith("/api")) {
+    return await serveStatic(req, res, __dirname);
+  }
+});
 
-const server = http.createServer((req, res) => {
-
-/*
-Challenge 3:
-
-1. Import and call serveStatic and pass it the directory of this current module.
-*/
-    return serveStatic(req,res,__dirname) 
-  
-})
-
-server.listen(PORT, ()=> console.log(`Connected on port: ${PORT}`))
+server.listen(PORT, () => console.log(`Connected on port: ${PORT}`));

@@ -16,7 +16,7 @@ Challenge:
   const extensions = path.extname(filePath); //this gives us the extensions of the filepath that we are displaying
 
   try {
-    const content = await fs.readFile(filePath);
+    const content = await fs.readFile(filePath);  //using fs we are reading the file and by default its buffer
     sendResponse(res, 200, getContentType(extensions), content); //here for the content-type we are using getcontenttype function by passing the extensions as parameter
   } catch (err) {
     /*
