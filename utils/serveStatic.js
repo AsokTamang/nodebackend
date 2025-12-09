@@ -1,15 +1,16 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
-import { sendResponse } from './sendResponse'
+import { sendResponse } from './sendResponse.js'
 
 
-export async function serveStatic(baseDir,res) {
+
+export async function serveStatic(req,res,baseDir) {
   
   const filePath = path.join(baseDir, 'public', 'index.html')  //this gives us the location of a file that we want to use
   try {
     const content = await fs.readFile(filePath)  //this code is for reading the file 
     
-    sendResponse(res,200,('Content-Type','text/html'),content) 
+    sendResponse(res,200,'text/html',content)  //here we are passing the header type as an object as name and value as key-value pair
     
   } catch (error) {
     console.log(error);

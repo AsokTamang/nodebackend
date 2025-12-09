@@ -17,7 +17,7 @@ Challenge 3:
 
 1. Import and call serveStatic and pass it the directory of this current module.
 */
-    return serveStatic(__dirname,res) 
+    return serveStatic(req,res,__dirname) 
   
 })
 
