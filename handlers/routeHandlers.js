@@ -16,5 +16,9 @@ import { getData } from "../utils/getData";
 import { sendResponse } from "../utils/sendResponse";
 export async function handleGet(res) {
   const content = await getData();
-  sendResponse(res, 200, "application/json", JSON.stringify(content));  //as the getData is returning the parsed json data , we must stringify it first
+  sendResponse(res, 200, "application/json", JSON.stringify(content)); //as the getData is returning the parsed json data , we must stringify it first
+}
+
+export async function handlePost(req, res) {
+ console.log("POST request received");
 }

@@ -1,6 +1,7 @@
 import http from "node:http";
 import { serveStatic } from "./utils/serveStatic.js";
 import { handleGet } from "./handlers/routeHandlers.js";
+import { handlePost } from "./handlers/routeHandlers.js";
 
 const PORT = 8000;
 
@@ -14,7 +15,14 @@ Challenge:
    3. When a GET request is received to '/api', use handleGet() to handle it.
 */ if (req.url.startsWith("/api") && req.method === "GET") {
     return await handleGet(res); //as the handleGet function is asyn we are using await here
-  } else if (!req.url.startsWith("/api")) {
+  }
+  else if (req.url.startsWith('/api') && req.method==="POST"){
+    return await handlePost(req,res);  
+
+
+  }  
+  
+  else if (!req.url.startsWith("/api")) {
     return await serveStatic(req, res, __dirname);
   }
 });
