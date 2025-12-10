@@ -5,5 +5,8 @@
   "license": "ISC",
   "author": "asok",
   "type": "module",
-  "main": "server.js"
+  "main": "server.js",
+  "dependencies": {
+    "sanitize-html": "^2.17.0"
+  }
 }
