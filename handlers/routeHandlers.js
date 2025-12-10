@@ -14,11 +14,13 @@ Open the browser and load the sightings page to see if it works.
 // handlePost
 import { getData } from "../utils/getData";
 import { sendResponse } from "../utils/sendResponse";
+import { parseJSONBody } from "../utils/parseJSONBody";
 export async function handleGet(res) {
   const content = await getData();
   sendResponse(res, 200, "application/json", JSON.stringify(content)); //as the getData is returning the parsed json data , we must stringify it first
 }
 
 export async function handlePost(req, res) {
- console.log("POST request received");
+  const rawBody =await parseJSONBody(req);  
+  console.log(rawBody);
 }
